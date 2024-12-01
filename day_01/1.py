@@ -1,17 +1,13 @@
 list1 = []
 list2 = []
-isFirst = True
 
 with open("input.txt", "r") as f:
-   for line in f:
-        # Process each line
-        for num in line.strip().split("   "):
-            if isFirst:
-                list1.append(int(num))
-                isFirst = not isFirst
-            else:
-                list2.append(int(num))
-                isFirst = not isFirst
+    lines  = f.readlines()
+               
+for line in lines:
+    num1, num2 = line.split()
+    list1.append(int(num1))
+    list2.append(int(num2))
 
 list1.sort()
 list2.sort()
@@ -28,13 +24,12 @@ for i in range(len(list1)):
 print(sum)
 
 #part 2
-
 dict = {}
+sum1 = 0
 
 for i in list2:
     dict[i] = dict.get(i, 0) + 1
 
-sum1 = 0
 for i in list1:
     sum1 += i * dict.get(i, 0)
 
